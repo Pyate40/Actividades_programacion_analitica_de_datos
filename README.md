@@ -1,2 +1,2 @@
 # Actividades_programacion_analitica_de_datos
-Este repositorio tiene todos los trabajos prácticos de programación en Python de la materia Programación para analítica de datos de la Maestría analítica de datos.
+Este repositorio contiene los trabajos prácticos, actividades y ejercicios desarrollados en Python para la asignatura Programación para Analítica de Datos, correspondiente a la Maestría en Analítica de Datos. El objetivo del repositorio es recopilar y organizar las actividades realizadas durante el curso, incluyendo ejercicios de programación, análisis y manipulación de datos, así como la aplicación de diferentes herramientas y técnicas de Python orientadas a la analítica de datos.
