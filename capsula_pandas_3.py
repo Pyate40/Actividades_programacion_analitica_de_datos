@@ -143,11 +143,51 @@ print(utilidad_por_canal(solo_centro).to_string(index=False))
 #   promedian.
 
 # Reto 1: su código aquí
+kpi_sede = (
+    df.groupby("sede")
+      .agg(
+          transacciones=("producto", "count"),
+          ingreso=("ingreso", "sum"),
+          utilidad=("utilidad", "sum")
+      )
+      .reset_index()
+)
 
+print("\nKPI por sede:")
+print(kpi_sede.to_string(index=False))
+
+lider_utilidad = (
+    kpi_sede
+    .sort_values("utilidad", ascending=False)
+    .iloc[0]["sede"]
+)
+
+print("Sede lider en utilidad:", lider_utilidad)
 
 # Reto 2: su código aquí
+kpi_producto = (
+    df.groupby("producto")
+      .agg(
+          unidades=("cantidad", "sum"),
+          ingreso=("ingreso", "sum")
+      )
+      .reset_index()
+      .sort_values("ingreso", ascending=False)
+)
 
+print("\nKPI por producto:")
+print(kpi_producto.to_string(index=False))
 
+lider_unidades = (
+    kpi_producto
+    .sort_values("unidades", ascending=False)
+    .iloc[0]["producto"]
+)
+
+lider_ingreso = kpi_producto.iloc[0]["producto"]
+
+print("Producto con más unidades:", lider_unidades)
+print("Producto con mayor ingreso:", lider_ingreso)
 
 # Reto 3: su código aquí
 
