@@ -143,13 +143,10 @@ print(utilidad_por_canal(solo_centro).to_string(index=False))
 #   promedian.
 
 # Reto 1: su código aquí
-kpi_sede = (
-    df.groupby("sede")
-      .agg(
+kpi_sede = (df.groupby("sede").agg(
           transacciones=("producto", "count"),
           ingreso=("ingreso", "sum"),
-          utilidad=("utilidad", "sum")
-      )
+          utilidad=("utilidad", "sum"))
       .reset_index()
 )
 
@@ -190,8 +187,26 @@ print("Producto con más unidades:", lider_unidades)
 print("Producto con mayor ingreso:", lider_ingreso)
 
 # Reto 3: su código aquí
+margen_producto = (
+    df.groupby("producto")
+      .agg(
+          unidades=("cantidad", "sum"),
+          ingreso=("ingreso", "sum"),
+          utilidad=("utilidad", "sum")
+      )
+      .reset_index()
+)
 
-
+margen_producto["margen_pct"] = (
+    margen_producto["utilidad"] /
+    margen_producto["ingreso"] * 100
+).round(1)
+margen_producto = margen_producto.sort_values(
+    "margen_pct",
+    ascending=False
+)
+print("\nMargen por producto:")
+print(margen_producto.to_string(index=False))
 
 # 7. Cierre
 # groupby + agg + sort_values: tres instrucciones que convierten 16
